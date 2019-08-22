@@ -52,11 +52,7 @@ Purpose     : Config / System dependent externals for GUI
 *       Global data
 */
 
-Ticker emwin_ticker;
-volatile GUI_TIMER_TIME TimeMS;
 Mutex emwin_mutex;
-GUI_TIMER_TIME timeMS = 0;
-
 /*********************************************************************
 *
 *       Public code
@@ -75,7 +71,7 @@ GUI_TIMER_TIME timeMS = 0;
 */
 
 GUI_TIMER_TIME GUI_X_GetTime(void) {
-  return timeMS;
+    return Kernel::get_ms_count();
 }
 
 void GUI_X_Delay(int ms) { 
@@ -112,7 +108,7 @@ void GUI_X_ExecIdle(void)
 void GUI_X_InitOS(void)    {}
 void GUI_X_Unlock(void)    { emwin_mutex.unlock(); }
 void GUI_X_Lock(void)      { emwin_mutex.lock();  }
-U32  GUI_X_GetTaskId(void) { return 0; }
+U32  GUI_X_GetTaskId(void) { return (U32)ThisThread::get_id(); }
 
 /*********************************************************************
 *
@@ -132,11 +128,6 @@ void GUI_X_Log     (const char *s) { printf("%s", s); }
 void GUI_X_Warn    (const char *s) { printf("%s", s); }
 void GUI_X_ErrorOut(const char *s) { printf("%s", s); }
 
-void ticker_handler(void)
-{
-    timeMS++;
-}
-
 /*********************************************************************
 *
 *      GUI_X_Init()
@@ -149,7 +140,6 @@ void ticker_handler(void)
 
 void GUI_X_Init(void) 
 {
-    emwin_ticker.attach(&ticker_handler, 0.001);
 }
 
 /*************************** End of file ****************************/

@@ -44,7 +44,7 @@ Purpose     : Display controller configuration (single layer)
 
 #include "GUI.h"
 #include "GUIDRV_FlexColor.h"
-#include "cy_tft_display.h"
+#include "ST7789V.h"
 #include "LCDConf.h"
 
 
@@ -115,7 +115,7 @@ static void _InitController(void) {
     *  this needs to be adapted by the customer.
     */
 
-    Cy_TFT_Init();
+    ST7789V_Init();
     
 }
 
@@ -154,11 +154,11 @@ void LCD_X_Config(void) {
     //
     // Set controller and operation mode
     //
-    PortAPI.pfWrite8_A0  = Cy_TFT_writeCommand;
-    PortAPI.pfWrite8_A1  = Cy_TFT_writeData;
-    PortAPI.pfWriteM8_A1 = Cy_TFT_writeDataStream;
-    PortAPI.pfRead8_A1  = readData;
-    PortAPI.pfReadM8_A1  = readDataStream;
+    PortAPI.pfWrite8_A0  = ST7789V_writeCommand;
+    PortAPI.pfWrite8_A1  = ST7789V_writeData;
+    PortAPI.pfWriteM8_A1 = ST7789V_writeDataStream;
+    PortAPI.pfRead8_A1  = ST7789V_readData;
+    PortAPI.pfReadM8_A1  = ST7789V_readDataStream;
     GUIDRV_FlexColor_SetFunc(pDevice, &PortAPI, GUIDRV_FLEXCOLOR_F66709, GUIDRV_FLEXCOLOR_M16C0B8);
 }
 
