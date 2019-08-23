@@ -6,6 +6,7 @@ These files contain the GUI configuration files as well as the the ST7789V inter
 The pins are correct for the targets
 * CY8CKIT062_WIFI_BT
 * CY8CKIT062S2_43012
+* CY8CKIT_062_BLE
 
 To make an emWin project using these files you should
 * mbed add git@github.com:iotexpert/mbed-os-emwin-st7789v.git
