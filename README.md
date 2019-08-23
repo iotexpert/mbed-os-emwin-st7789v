@@ -41,7 +41,7 @@ If you need to use it for a different kit you can add pins using the target over
         "*": {
             "target.components_add": ["EMWIN_OSNTS"]
         },
-        "CY8CKIT_062_WIFI_BT" : {
+        "CY8CKIT_NEWKIT" : {
             "ST7789V_TFT.TFTRD":"P12_3"
         }
     }
