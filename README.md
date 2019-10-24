@@ -19,6 +19,7 @@ To use these two libraries you need to add the emWin library to mbed_app.json
         "*": {
             "target.components_add": ["EMWIN_OSNTS"]
         }
+        }
 ```
 Here is an example main.cpp
 ```
